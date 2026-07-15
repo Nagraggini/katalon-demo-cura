@@ -1,0 +1,26 @@
+{
+  "name": "katalon-demo-cura",
+  "version": "1.0.0",
+  "description": "**Mi az a Playwright?**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nagraggini/katalon-demo-cura.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Nagraggini/katalon-demo-cura/issues"
+  },
+  "homepage": "https://github.com/Nagraggini/katalon-demo-cura#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1"
+  }
+}
