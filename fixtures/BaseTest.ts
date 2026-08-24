@@ -1,35 +1,37 @@
-// Playwright Fixture mintát követve mindent kitakarít a háttérben!
-// fixtures/baseTest.ts
-import { test as base, devices, BrowserContext, Page } from "@playwright/test";
-import { LandingPage } from "../pages/LandingPage";
-import { LoginPage } from "../pages/LoginPage";
+import { test as base } from '@playwright/test';
+import { LandingPage } from '../pages/LandingPage';
+import { LoginPage } from '../pages/LoginPage';
+import { MakeAppointmentPage } from '../pages/MakeAppointmentPage';
+import { SummaryPage } from '../pages/SummaryPage';
 
-// 1. Lépés: Definiáljuk a fixture-ök típusait (milyen Page Objectjeink lesznek)
 type MyFixtures = {
-  context: BrowserContext;
-  page: Page;
   landingPage: LandingPage;
   loginPage: LoginPage;
+  makeAppointmentPage: MakeAppointmentPage;
+  summaryPage: SummaryPage;
 };
 
-// 2. Lépés: Kiterjesztjük az alap 'test' objektumot
 export const test = base.extend<MyFixtures>({
-  // Minden fixture egy aszinkron függvény, ami megkapja a 'page' és a 'use' paramétert
-  // Példányosítjuk az osztályt
   landingPage: async ({ page }, use) => {
-    // Átadjuk a tesztnek használatra
     await use(new LandingPage(page));
   },
-  loginPage: async ({ page }, use) => {    
+
+  loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
   },
 
+  makeAppointmentPage: async ({ page }, use) => {
+    await use(new MakeAppointmentPage(page));
+  },
+
+  summaryPage: async ({ page }, use) => {
+    await use(new SummaryPage(page));
+  }
 });
 
-// 3. Lépés: Újraexportáljuk az 'expect' funkciót is, a kényelmesebb importálásért
-export { expect } from "@playwright/test";
+export { expect } from '@playwright/test';
 
-// Minden teszt után lefut.
+// Run after every tests.
 test.afterEach(async ({ context }) => {
   await context.close();
 });
