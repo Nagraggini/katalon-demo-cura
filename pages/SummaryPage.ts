@@ -1,8 +1,7 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page } from '@playwright/test';
 
 export class SummaryPage {
-  readonly page: Page;
-
+  readonly heading: Locator;
   readonly facilityValue: Locator;
   readonly readmissionValue: Locator;
   readonly healthcareProgramValue: Locator;
@@ -10,12 +9,11 @@ export class SummaryPage {
   readonly commentValue: Locator;
 
   constructor(page: Page) {
-    this.page = page;
-
-    this.facilityValue = this.page.locator('#facility');
-    this.readmissionValue = this.page.locator('#hospital_readmission');
-    this.healthcareProgramValue = this.page.locator('#program');
-    this.visitDateValue = this.page.locator('#visit_date');
-    this.commentValue = this.page.locator('#comment');
+    this.heading = page.getByRole('heading', { name: 'Appointment Confirmation' });
+    this.facilityValue = page.locator('#facility');
+    this.readmissionValue = page.locator('#hospital_readmission');
+    this.healthcareProgramValue = page.locator('#program');
+    this.visitDateValue = page.locator('#visit_date');
+    this.commentValue = page.locator('#comment');
   }
 }
