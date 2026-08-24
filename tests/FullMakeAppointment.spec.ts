@@ -1,20 +1,17 @@
-import { test, expect } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage";
-import { MakeAppointmentPage } from "../pages/MakeAppointmentPage";
-import { SummaryPage } from "../pages/SummaryPage";
+import { test, expect } from '../fixtures/BaseTest';
 
-test("Teljes foglalási folyamat bejelentkezéssel", async ({ page, loginPage,makeAppointmentPage,SummaryPage }) => {
-
- 
-  // 1. Bejelentkezés fázis
+test('Full appointment workflow with login', async ({
+  page,
+  loginPage,
+  makeAppointmentPage,
+  summaryPage
+}) => {
   await loginPage.navigate();
-  await loginPage.login('John Doe', 'ThisIsNotAPassword');
+  await loginPage.login();
 
-  // 2. Ellenőrizzük, hogy megérkeztünk-e a foglalási oldalra, és a főcím látható
-  await expect(page).toHaveURL(/.*#appointment/);
+  await expect(page).toHaveURL(/#appointment$/);
   await expect(makeAppointmentPage.heading).toBeVisible();
- 
-  // 3. Időpontfoglalás fázis a TypeScript objektummal
+
   await makeAppointmentPage.createAppointment({
     facility: 'Seoul CURA Healthcare Center',
     hospitalReadmission: false,
@@ -23,13 +20,11 @@ test("Teljes foglalási folyamat bejelentkezéssel", async ({ page, loginPage,ma
     comment: 'Christmas annual check-up.'
   });
 
-  // 4. Hitelesítjük a sikeres rögzítést (átirányít a confirmation aloldalra).
-  await expect(page).toHaveURL(/.*#summary/);
-  await expect(page.getByRole('heading', { name: 'Appointment Confirmation' })).toBeVisible();
-
-  await expect(page.facilityValue).toHaveText('Seoul CURA Healthcare Center');
-await expect(page.readmissionValue).toHaveText('No');
-await expect(page.healthcareProgramValue).toHaveText('Medicare');
-await expect(page.visitDateValue).toHaveText('20/12/2026');
-await expect(page.commentValue).toHaveText('Christmas annual check-up.');
+  await expect(page).toHaveURL(/#summary$/);
+  await expect(summaryPage.heading).toBeVisible();
+  await expect(summaryPage.facilityValue).toHaveText('Seoul CURA Healthcare Center');
+  await expect(summaryPage.readmissionValue).toHaveText('No');
+  await expect(summaryPage.healthcareProgramValue).toHaveText('Medicare');
+  await expect(summaryPage.visitDateValue).toHaveText('20/12/2026');
+  await expect(summaryPage.commentValue).toHaveText('Christmas annual check-up.');
 });
