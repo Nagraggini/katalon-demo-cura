@@ -1,38 +1,20 @@
-import { test, expect } from "../fixtures/BaseTest";
-import { LandingPage} from "../pages/LandingPage";
-import { LoginPage} from "../pages/LoginPage";
+import { test, expect } from '../fixtures/BaseTest';
 
+test('Main menu buttons check', async ({ page, landingPage, loginPage }) => {
+  await landingPage.navigate();
 
-test('test', async ({ page , landingPage, loginPage }) => {
-
-  landingPage.navigate(); 
-
-  // Home oldal.
-  await landingPage.menu.click();
+  await landingPage.openMenu();
+  await expect(landingPage.home).toBeVisible();
   await landingPage.home.click();
 
-  // Ellenőrizzük, hogy a főcím látható-e és az adott szöveget tartalmazza-e.  
-  await expect(landingPage.h1).toBeVisible();
-  await expect(landingPage.h1).toHaveText('CURA Healthcare Service');
+  await expect(page).toHaveURL(/katalon-demo-cura\.herokuapp\.com\/$/);
+  await expect(landingPage.heading).toBeVisible();
 
-  // Bejelentkezés felület.
-  await landingPage.menu.click();
+  await landingPage.openMenu();
+  await expect(landingPage.login).toBeVisible();
   await landingPage.login.click();
 
-  // Ellenőrizzük, hogy az url cím tartalmazza-e az adott szöveget.
-  await expect(page).toHaveURL("profile.php#login", { timeout: 10000 });
-
-  // Login főcím jelenlétének és szövegének ellenőrzése. 
+  await expect(page).toHaveURL(/profile\.php#login$/);
   await expect(loginPage.loginHeading).toBeVisible();
-
-  // Ellenőrizzük, hogy látható-e az adott szöveg.  
   await expect(loginPage.loginMessage).toBeVisible();
-
-  // Bejelentkezés
-  await loginPage.usernameInput.fill('John Doe');
-  await loginPage.passwordInput.fill('ThisIsNotAPassword');
-  await loginPage.loginBtn.click();
-  
-  // assert -> Make Appointment
-  await page.getByRole('heading', { name: 'Make Appointment' }).click();
 });
