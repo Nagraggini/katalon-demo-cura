@@ -1,29 +1,39 @@
 import { expect, Locator, Page } from "@playwright/test";
 
-export class LandingPage {
+export class SideMenuPage {
   readonly page: Page;
   readonly menu: Locator;
   readonly sidebar: Locator;
   readonly home: Locator;
   readonly login: Locator;
-  readonly heading: Locator;
-  readonly h1: Locator;
-  readonly h2: Locator;
-  readonly makeAppointmentButton: Locator;
+  readonly history: Locator;
+  readonly profile: Locator;
+  readonly logout: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.menu = page.locator("#menu-toggle");
     this.sidebar = page.locator("#sidebar-wrapper");
-    this.home = this.sidebar.getByRole("link", { name: "Home", exact: true });
-    this.login = this.sidebar.getByRole("link", { name: "Login", exact: true });
-    this.heading = page.getByRole("heading", {
-      name: "CURA Healthcare Service",
-      level: 1,
+    this.home = this.sidebar.getByRole("link", {
+      name: "Home",
+      exact: true,
     });
-    this.h1 = page.locator("//h1");
-    this.h2 = page.locator("//h2");
-    this.makeAppointmentButton = page.locator("#btn-make-appointment");
+    this.login = this.sidebar.getByRole("link", {
+      name: "Login",
+      exact: true,
+    });
+    this.history = this.sidebar.getByRole("link", {
+      name: "History",
+      exact: true,
+    });
+    this.profile = this.sidebar.getByRole("link", {
+      name: "Profile",
+      exact: true,
+    });
+    this.logout = this.sidebar.getByRole("link", {
+      name: "Logout",
+      exact: true,
+    });
   }
 
   async navigate(): Promise<void> {

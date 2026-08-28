@@ -21,33 +21,35 @@ export class MakeAppointmentPage {
     this.page = page;
 
     // Lokátorok inicializálása az id-k és szerepek alapján
-    this.heading = page.getByRole('heading', { name: 'Make Appointment' });
-    this.facilitySelect = page.locator('#combo_facility');
-    this.hospitalReadmissionCheckbox = page.locator('#chk_hospotal_readmission');
+    this.heading = page.getByRole("heading", { name: "Make Appointment" });
+    this.facilitySelect = page.locator("#combo_facility");
+    this.hospitalReadmissionCheckbox = page.locator(
+      "#chk_hospotal_readmission",
+    );
 
-    this.medicareRadio = page.locator('#radio_program_medicare');
-    this.medicaidRadio = page.locator('#radio_program_medicaid');
-    this.noneRadio = page.locator('#radio_program_none');
+    this.medicareRadio = page.locator("#radio_program_medicare");
+    this.medicaidRadio = page.locator("#radio_program_medicaid");
+    this.noneRadio = page.locator("#radio_program_none");
 
-    this.visitDateInput = page.locator('#txt_visit_date');
-    this.commentTextArea = page.locator('#txt_comment');
-    this.bookAppointmentBtn = page.locator('#btn-book-appointment');
+    this.visitDateInput = page.locator("#txt_visit_date");
+    this.commentTextArea = page.locator("#txt_comment");
+    this.bookAppointmentBtn = page.locator("#btn-book-appointment");
   }
 
   async navigate(): Promise<void> {
-    await this.page.goto(
-      '/#appointment'
-    );
+    await this.page.goto("/#appointment");
   }
 
   /**
    * Selects the radio button for the desired health program.
    * @param program 'Medicare' | 'Medicaid' | 'None'
    */
-  private async selectProgram(program: 'Medicare' | 'Medicaid' | 'None'): Promise<void> {
-    if (program === 'Medicare') {
+  private async selectProgram(
+    program: "Medicare" | "Medicaid" | "None",
+  ): Promise<void> {
+    if (program === "Medicare") {
       await this.medicareRadio.check();
-    } else if (program === 'Medicaid') {
+    } else if (program === "Medicaid") {
       await this.medicaidRadio.check();
     } else {
       await this.noneRadio.check();
@@ -60,7 +62,7 @@ export class MakeAppointmentPage {
   async createAppointment(details: {
     facility: string;
     hospitalReadmission: boolean;
-    program: 'Medicare' | 'Medicaid' | 'None';
+    program: "Medicare" | "Medicaid" | "None";
     visitDate: string;
     comment: string;
   }): Promise<void> {
