@@ -68,15 +68,17 @@ test("Bulk make appointment workflow with login", async ({
         await sideMenuPage.history.click();
         await expect(historyPage.page).toHaveURL(/history\.php#history$/);
         await expect(historyPage.h2).toBeVisible();
-        console.log("appointmentList");
-        console.log(appointmentList);
 
-        console.log("await historyPage.getAppointments()");
-        console.log(await historyPage.getAppointments());
+        const actualAppointments = await historyPage.getAppointments();
 
-        await expect(appointmentList).toStrictEqual(
-            await historyPage.getAppointments(),
-        );
+        console.log("Expected appointment count:", appointmentList.length);
+        console.log("Actual appointment count:", actualAppointments.length);
+
+        console.log("Expected appointments:", appointmentList);
+        console.log("Actual appointments:", actualAppointments);
+
+        // The website can only keep 4 appointment.
+        await expect(actualAppointments).toStrictEqual(appointmentList);
     });
 
     await test.step("Logout and check it.", async () => {
