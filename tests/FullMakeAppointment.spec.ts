@@ -13,7 +13,12 @@ test("Full appointment workflow with login", async ({
         await loginPage.navigate();
         await loginPage.login();
     });
-    let visitDate: string = "20/12/2026";
+
+    const appointmentDate = new Date();
+    // A date one week later than today.
+    appointmentDate.setDate(appointmentDate.getDate() + 7);
+
+    const visitDate = appointmentDate.toLocaleDateString("en-GB");
 
     await test.step("Make an Appointment", async () => {
         await expect(makeAppointmentPage.page).toHaveURL(/#appointment$/);
