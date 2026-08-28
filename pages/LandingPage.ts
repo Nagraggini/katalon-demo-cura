@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { expect, Locator, Page } from "@playwright/test";
 
 export class LandingPage {
   readonly page: Page;
@@ -7,27 +7,31 @@ export class LandingPage {
   readonly home: Locator;
   readonly login: Locator;
   readonly heading: Locator;
+  readonly h1: Locator;
+  readonly h2: Locator;
   readonly makeAppointmentButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.menu = page.locator('#menu-toggle');
-    this.sidebar = page.locator('#sidebar-wrapper');
-    this.home = this.sidebar.getByRole('link', { name: 'Home', exact: true });
-    this.login = this.sidebar.getByRole('link', { name: 'Login', exact: true });
-    this.heading = page.getByRole('heading', {
-      name: 'CURA Healthcare Service',
-      level: 1
+    this.menu = page.locator("#menu-toggle");
+    this.sidebar = page.locator("#sidebar-wrapper");
+    this.home = this.sidebar.getByRole("link", { name: "Home", exact: true });
+    this.login = this.sidebar.getByRole("link", { name: "Login", exact: true });
+    this.heading = page.getByRole("heading", {
+      name: "CURA Healthcare Service",
+      level: 1,
     });
-    this.makeAppointmentButton = page.locator('#btn-make-appointment');
+    this.h1 = page.locator("//h1");
+    this.h2 = page.locator("//h2");
+    this.makeAppointmentButton = page.locator("#btn-make-appointment");
   }
 
   async navigate(): Promise<void> {
-    await this.page.goto('/');
+    await this.page.goto("/");
   }
 
   async openMenu(): Promise<void> {
-    if (!(await this.sidebar.getAttribute('class'))?.includes('active')) {
+    if (!(await this.sidebar.getAttribute("class"))?.includes("active")) {
       await this.menu.click();
     }
 
