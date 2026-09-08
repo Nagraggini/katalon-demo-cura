@@ -9,7 +9,20 @@ test("Bulk make appointment workflow with login", async ({
     summaryPage,
     sideMenuPage,
     historyPage,
-}) => {
+}, testInfo) => {
+    // Mark a test with tags or dynamic description.
+    testInfo.annotations.push({
+        type: "category",
+        description: "regression-test",
+    });
+
+    // Attach a screenshot in case of an error or at a specific point.
+    const screenshot = await page.screenshot();
+    await testInfo.attach("appointment-screen", {
+        body: screenshot,
+        contentType: "image/png",
+    });
+
     await test.step("Login", async () => {
         await loginPage.navigate();
         await loginPage.login();
