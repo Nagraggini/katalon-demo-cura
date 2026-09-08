@@ -97,9 +97,11 @@ Add the lines to your `.gitignore` file:
 /allure-results/
 /allure-report/
 ```
+In your GitHub repository, go to Settings → Actions → General, scroll down to the Workflow permissions section, select Read and write permissions, and then click Save at the bottom.
 
-Go to Settings -> Pages in your GitHub repository.
+Go to Settings → Pages in your GitHub repository.
 
-In the Build and deployment section, under Source, select GitHub Actions instead of Deploy from a branch (if it is not already set).
+In the Build and deployment section, under Source, select Deploy from a branch.
+Under Branch set gh-pages and click Save. Refresh this website, and now you can see the link.
 
-After the above Action is completed, your beautiful Allure report will be immediately available on the GitHub Pages link!
+Once the above action is completed, your beautiful Allure report will be immediately available at your GitHub Pages link!

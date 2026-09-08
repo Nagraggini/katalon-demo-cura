@@ -18,6 +18,11 @@ Automated UI test suite for the CURA Healthcare Service application, designed to
 - Parallel test execution to optimize CI/CD pipeline performance
 - Clean and maintainable test architecture using the Page Object Model
 
+## Test Report
+
+![Test Report](docs/images/allure-report.png)
+📊 [View Allure Report](https://nagraggini.github.io/katalon-demo-cura/)
+
 ## Prerequisites
 
 - Node.js (latest LTS version)
