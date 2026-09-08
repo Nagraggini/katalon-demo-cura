@@ -7,12 +7,6 @@ test("Landing page visual test", async ({ page, landingPage }, testInfo) => {
         description: "regression-test",
     });
 
-    // Attach a screenshot in case of an error or at a specific point.
-    const screenshot = await page.screenshot();
-    await testInfo.attach("appointment-screen", {
-        body: screenshot,
-        contentType: "image/png",
-    });
     await landingPage.navigate();
 
     await expect(landingPage.h1).toHaveText("CURA Healthcare Service");

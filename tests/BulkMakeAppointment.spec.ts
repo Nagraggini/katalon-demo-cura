@@ -16,13 +16,6 @@ test("Bulk make appointment workflow with login", async ({
         description: "regression-test",
     });
 
-    // Attach a screenshot in case of an error or at a specific point.
-    const screenshot = await page.screenshot();
-    await testInfo.attach("appointment-screen", {
-        body: screenshot,
-        contentType: "image/png",
-    });
-
     await test.step("Login", async () => {
         await loginPage.navigate();
         await loginPage.login();

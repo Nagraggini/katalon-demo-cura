@@ -13,13 +13,6 @@ test("Login", async ({
         description: "smoke-test",
     });
 
-    // Attach a screenshot in case of an error or at a specific point.
-    const screenshot = await page.screenshot();
-    await testInfo.attach("appointment-screen", {
-        body: screenshot,
-        contentType: "image/png",
-    });
-
     await loginPage.navigate();
     await loginPage.login();
     await expect(landingPage.h2).toHaveText("Make Appointment");
