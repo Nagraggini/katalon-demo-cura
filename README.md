@@ -4,6 +4,8 @@
 
 Automated UI test suite for the CURA Healthcare Service application, designed to demonstrate proficiency in modern test automation practices.
 
+Tested web application: [https://katalon-demo-cura.herokuapp.com/](https://katalon-demo-cura.herokuapp.com/)
+
 ## Tech Stack
 
 - Test framework: Playwright
