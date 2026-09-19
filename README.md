@@ -20,7 +20,9 @@ Tested web application: [https://katalon-demo-cura.herokuapp.com/](https://katal
 - Parallel test execution to optimize CI/CD pipeline performance
 - Clean and maintainable test architecture using the Page Object Model
 
-## Test Report
+## Allure Test Report
+
+The automated test results and execution reports are generated and published automatically via GitHub Actions:
 
 ![Test Report](docs/images/allure-report.png)
 📊 [View Allure Report](https://nagraggini.github.io/katalon-demo-cura/)
