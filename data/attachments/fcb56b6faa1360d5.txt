@@ -1,0 +1,62 @@
+Expected appointment count: 4
+Actual appointment count: 4
+Expected appointments: [
+  {
+    facility: 'Tokyo CURA Healthcare Center',
+    hospitalReadmission: true,
+    healthcareProgram: 'Medicare',
+    visitDate: '05/09/2040',
+    comment: 'Annual health check-up.'
+  },
+  {
+    facility: 'Hongkong CURA Healthcare Center',
+    hospitalReadmission: false,
+    healthcareProgram: 'Medicaid',
+    visitDate: '08/09/2040',
+    comment: 'Routine consultation.'
+  },
+  {
+    facility: 'Seoul CURA Healthcare Center',
+    hospitalReadmission: true,
+    healthcareProgram: 'None',
+    visitDate: '12/09/2040',
+    comment: 'Follow-up appointment.'
+  },
+  {
+    facility: 'Tokyo CURA Healthcare Center',
+    hospitalReadmission: false,
+    healthcareProgram: 'Medicare',
+    visitDate: '15/09/2040',
+    comment: 'General medical examination.'
+  }
+]
+Actual appointments: [
+  {
+    visitDate: '05/09/2040',
+    facility: 'Tokyo CURA Healthcare Center',
+    hospitalReadmission: true,
+    healthcareProgram: 'Medicare',
+    comment: 'Annual health check-up.'
+  },
+  {
+    visitDate: '08/09/2040',
+    facility: 'Hongkong CURA Healthcare Center',
+    hospitalReadmission: false,
+    healthcareProgram: 'Medicaid',
+    comment: 'Routine consultation.'
+  },
+  {
+    visitDate: '12/09/2040',
+    facility: 'Seoul CURA Healthcare Center',
+    hospitalReadmission: true,
+    healthcareProgram: 'None',
+    comment: 'Follow-up appointment.'
+  },
+  {
+    visitDate: '15/09/2040',
+    facility: 'Tokyo CURA Healthcare Center',
+    hospitalReadmission: false,
+    healthcareProgram: 'Medicare',
+    comment: 'General medical examination.'
+  }
+]
